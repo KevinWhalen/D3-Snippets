@@ -1,0 +1,26 @@
+#tableFrame {
+    height: 470px;
+}
+button {
+    margin-top: 5px;
+}
+table, td, th {
+    border: thin solid black;
+    border-collapse: collapse;
+    padding: 3px; /* 10px */
+    background-color: lemonchiffon;
+    text-align: left;
+    margin: 10px 0;
+}
+.highlight {
+    /*border: thick solid red*/;
+    background-color: cornflowerblue;
+    /*font-size: larger;*/  
+}
+.hover {
+    background-color: red;
+/*
+    font-weight: bold;
+    font-variant: small-caps;
+*/
+}
