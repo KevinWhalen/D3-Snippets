@@ -1,0 +1,61 @@
+/*
+red CC0000
+light red FF3333
+yellow FFFF77
+blue 00CCFF
+green 6BDF64
+*/
+
+.tableFrame {
+}
+
+.tableHeader {
+    margin-bottom: 5px;
+}
+.tableHeader span {
+    font-size: large;
+    padding: 5px;
+    margin-right: 20px;
+}
+
+/* tableBody */
+#peaksTable {
+    overflow: hidden;
+    height: 500px;
+    width: 26em;
+    border: thin solid black;
+    background-color: #6BDF64;
+    position: relative;
+}
+
+.row {
+    position: relative;
+}
+
+.mountain, .height {
+    display: inline-block;
+    border: thin solid black;
+    padding: 3px;
+    background-color: #FFFF77;
+    text-align: left;
+}
+.mountain {
+    min-width: 20em;
+    width: 20em;
+    max-width: 20em;
+}
+.height {
+    min-width: 5em;
+    width: 5em;
+    max-width: 5em;
+}
+
+.highlight {
+    background-color: #00CCFF;
+}
+
+.hover {
+    background-color: #FF3333;
+    font-weight: bold;
+    font-variant: small-caps;
+}
