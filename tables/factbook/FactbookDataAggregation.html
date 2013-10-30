@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Data Aggregation Page</title>
+</head>
+<body>
+<div id="output"></div>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.2.2/d3.v3.min.js"></script>
+<script type="text/javascript">
+    // Base filepath, folders, filenames...
+    var path = "statistics1";
+    var filename_data = path + "/" + 'data.json';
+    var path_individual = path + "/" + "individual_data";
+    var filename_gdp = path_individual + "/" + "country_gdp.json",
+        filename_population = path_individual + "/" + "country_population.json";
+    var path_electricity = path_individual + "/" + "electricity";
+    var filename_electricCapacity = path_electricity + "/" + "country_kw-cap.json",
+        filename_electricProduction = path_electricity + "/" + "country_kwh-prod.json";
+    var path_percents = path_electricity + "/" + "production_percents";
+    var filename_fossil = path_percents + "/" + "fossil-fuels.json",
+        filename_nuclear = path_percents + "/" + "nuclear.json",
+        filename_hydroelectric = path_percents + "/" + "hydroelectric-plants.json",
+        filename_otherRenewable = path_percents + "/" + "other-renewable.json";
+
+    var fileSet = [];
+    fileSet.push(filename_population);
+    
+    fileSet.push(filename_gdp);
+    fileSet.push(filename_electricCapacity);
+    fileSet.push(filename_electricProduction);
+    fileSet.push(filename_fossil);
+    fileSet.push(filename_nuclear);
+    fileSet.push(filename_hydroelectric);
+    fileSet.push(filename_otherRenewable);
+
+
+var data = [];
+
+$(document).ready(function(){
+    // Takes a set of information from a file of the form: 
+    // [{"country": "", "attributes": [{"name": "", "value": #, "date": ""}, {...}]}, {...}]
+    function aggregate(set){
+        if (data.length > 0){
+            var mask = [data.length];
+            for (var i = 0; i < data.length; ++i) mask[i] = 0;
+
+// --- Issue with duplicate countries being insterted into the data array ---
+            $.each(set, function(idx, obj){
+                for (var key = 0; key < data.length; key++){
+                    if (obj['country'] == data[key]['country']){
+                        for (var a in obj['attributes']){
+                // --- Add verifification that the attribute does not already exist. --------
+                            if (obj['attributes'][a] != null){
+                                data[key]['attributes'].push(obj['attributes'][a]);
+                            } else {
+                                console.log("issue incoming line: " + obj['country']);
+                            }
+                        }
+                        mask[key] = 1;
+                    }
+                }
+            });
+            
+            for (var m = mask.indexOf(0); 0 <= m; m = mask.indexOf(0, m + 1)){
+                if (set[m] != null) data.push(set[m]);
+                console.log(set[m]);
+            }
+        } else {
+            data = set.slice(0);
+        }
+
+        // Output aggregated results. 
+        $('#output').html(JSON.stringify(data));
+        if (!data.length > 0){
+            $('#output').html("<p>data array empty</p>");
+        }
+    }
+
+    for (var f = 0; f < fileSet.length; ++f){
+        $.ajax({url: fileSet[f],
+            dataType: 'json',
+            type: 'GET',
+            async: false
+        }).done(function(json){aggregate(json);});
+    }
+});
+
+</script>
+</body>
+</html>
