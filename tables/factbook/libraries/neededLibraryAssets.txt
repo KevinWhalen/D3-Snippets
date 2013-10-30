@@ -1,0 +1,5 @@
+https://github.com/harvesthq/chosen/tree/master/public
+
+chosen-sprite.png
+
+chosen-sprite@2x.png
