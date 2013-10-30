@@ -1,0 +1,86 @@
+Encoding in JSON
+Array of country objects that have some statistic object containing a value and a date.
+
+single word countries, value, date
+^(\w+)\s+(\d+)\s+(.+)$
+two word countires seperated by space or comma, value, date
+^(\w+|\w+[,\s]{1,2}\w+)\s+(\d+)\s+(.+)$
+three word countires seperated by space or comma, value, date
+^(\w+|\w+[,\s]{1,2}\w+|\w+[,\s]{1,2}\w+[,\s]{1,2}\w+)\s+(\d+)\s+(.+)$
+
+- dash between first two word
+' apostrophe between any words
+parentheses
+^(\w+|\w+[-',\s]{1,2}\w+|\w+[',\s\(\)]{1,2}\w+[',\s\(\)]{1,2}\w+)\s+(\d+)\s+(.+)$
+
+
+four
+five
+name ending in parentheses
+^(\w+|\w+[-',\s]{1,2}\w+[\)]*|\w+[',\s\(\)]{1,2}\w+[',\s\(\)]{1,2}\w+[\)]*|\w+[',\s\(\)]{1,2}\w+[',\s\(\)]{1,2}\w+[',\s\(\)]{1,2}\w+[\)]*|\w+[',\s\(\)]{1,2}\w+[',\s\(\)]{1,2}\w+[',\s\(\)]{1,2}\w+[',\s\(\)]{1,2}\w+[\)]*)\s+(\d+)\s+(.+)$
+decimal value
+^(\w+|\w+[-',\s]{1,2}\w+[\)]*|\w+[',\s\(\)]{1,2}\w+[',\s\(\)]{1,2}\w+[\)]*|\w+[',\s\(\)]{1,2}\w+[',\s\(\)]{1,2}\w+[',\s\(\)]{1,2}\w+[\)]*|\w+[',\s\(\)]{1,2}\w+[',\s\(\)]{1,2}\w+[',\s\(\)]{1,2}\w+[',\s\(\)]{1,2}\w+[\)]*)\s+(\d+|\d+\.\d+)\s+(.+)$
+seven...hand changed:
+Saint Helena, Ascension, and Tristan da Cunha
+
+
+{"country": "\1", "GDP (purchasing power parity)": {"value": \2, "date": "\3"}},
+{"country": "\1", "Population": {"value": \2, "date": "\3"}},
+{"country": "\1", "Generating capacity (KW)": {"value": \2, "date": "\3"}},
+{"country": "\1", "Annual production (KWH)": {"value": \2, "date": "\3"}},
+{"country": "\1", "Percent from fossil fuels": {"value": \2, "date": "\3"}},
+{"country": "\1", "Percent from nuclear fuels": {"value": \2, "date": "\3"}},
+{"country": "\1", "Percent from hydroelectric plants": {"value": \2, "date": "\3"}},
+
+{"country": "\1", "Percent from other renewable sources": {"value": \2, "date": "\3"}},
+	(including, for example, wind, waves, solar, and geothermal)
+
+
+
+
+
+
+Data structure end goal:
+
+data = [{"country": "", "attributes": [{"name": "", "value": #, "date": ""}, {...}]}, {...}]
+{"country": "\1", "attributes": [{"name": "GDP (purchasing power parity)", "value": \2, "date": "\3"}]},
+{"country": "\1", "attributes": [{"name": "Population", "value": \2, "date": "\3"}]},
+{"country": "\1", "attributes": [{"name": "Generating capacity (KW)", "value": \2, "date": "\3"}]},
+{"country": "\1", "attributes": [{"name": "Annual production (KWH)", "value": \2, "date": "\3"}]},
+{"country": "\1", "attributes": [{"name": "Percent from fossil fuels", "value": \2, "date": "\3"}]},
+{"country": "\1", "attributes": [{"name": "Percent from nuclear fuels", "value": \2, "date": "\3"}]},
+{"country": "\1", "attributes": [{"name": "Percent from hydroelectric plants", "value": \2, "date": "\3"}]},
+{"country": "\1", "attributes": [{"name": "Percent from other renewable sources", "value": \2, "date": "\3"}]},
+
+
+--- THIS WAS A FIX but there was an ending parentheses bug above ---
+("GDP \(purchasing power parity\)"): \{"value": (\d+|\d+\.\d+)\s+(.+)$
+attributes: [{name: \1, value: \2, date: \3
+"\}\},
+"},
+
+country
+	attributes
+		name
+		value
+		date
+
+Attribute names:
+	gdp == 'GDP (purchasing power parity)'
+	population == 'Population'
+	electricCapacity == 'Generating capacity (KW)'
+	electricProduction == 'Annual production (KWH)'
+	fossil == 'Percent from fossil fuels'
+	nuclear == 'Percent from nuclear fuels'
+	hydroelectric == 'Percent from hydroelectric plants'
+	otherRenewable == 'Percent from other renewable sources'
+
+
+
+Picture:
+
+country
+	statistics
+	electric
+	% of annual
+explore
