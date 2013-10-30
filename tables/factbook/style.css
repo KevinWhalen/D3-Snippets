@@ -1,0 +1,138 @@
+/*
+
+*/
+
+/* All screen sizes */
+/*============================================================================*/
+#selectionDisplay {
+    width: 95%;
+    margin: 20px auto 20px auto;
+}
+
+.columnContainer {
+}
+
+.leftColumn {
+    float: left;
+    min-height: 250px;
+    min-width: 175px;
+    width: 50%;
+}
+
+.rightColumn {
+    float: right;
+    min-height: 250px;
+    min-width: 175px;
+    width: 50%;
+}
+
+.listBox {
+}
+
+#countries {
+}
+
+#countries ul {
+    list-style: none;
+}
+
+#statistics {
+}
+
+#electricity {
+}
+
+#percentsElectricity {
+}
+
+.selectionFooter {
+    display: block;
+    width: 100%;
+}
+
+#graphChoice{
+}
+
+#exploreButton {
+    text-align: center;
+    font-size: 14pt;
+    width: 5em;
+    line-height: 1.25em;
+    height: 1.25em;
+    padding: 2px;
+    float: right;
+    margin-left: auto;
+    margin-right: 20px;
+    cursor: pointer;
+    /* Matched to chosen.jquery styles*/
+    color: #333;
+    /* Being refined -------------------------*/
+    border: 1px solid #aaa;
+    background-color: #e4e4e4;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #eeeeee), color-stop(80%, #ffffff));
+    background-image: -webkit-linear-gradient(#eeeeee 20%, #ffffff 80%);
+    background-image: -moz-linear-gradient(#eeeeee 20%, #ffffff 80%);
+    background-image: -o-linear-gradient(#eeeeee 20%, #ffffff 80%);
+    background-image: linear-gradient(#eeeeee 20%, #ffffff 80%);
+    /*-------------------------*/
+    border-radius: 5px;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+}
+
+/*============================================================================*/
+#factbookInfographic {
+    display: none;
+}
+
+
+/* Large screen styling */
+@media screen and (min-width: 401px)
+{
+
+} /* End large screen size */
+
+
+/* Small screen styling */
+@media screen and (max-width: 400px)
+{
+.leftColumn {
+    width: 100%;
+    min-height: 0;
+    height: auto;
+}
+
+.rightColumn {
+    float: left;
+    width: 100%;
+    min-height: 0;
+    height: auto;
+}
+
+#exploreButton {
+    margin-top: 10px;
+}
+} /* End small screen size */
+
+
+/* Multi-Series Line Chart
+/* http://bl.ocks.org/mbostock/3884955 */
+#demoSvg {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
